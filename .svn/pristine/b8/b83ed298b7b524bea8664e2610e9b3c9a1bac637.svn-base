@@ -345,8 +345,8 @@ def RawSuppliers(_range):
         RawSupplierID  = random.randint(1, 50)
         RawMaterialID = random.randint(1, 200)
         RawMaterialUnitOfMeasure = random.choice(measures)
-        RawMaterialQuantity = 100 * math.floor(random.randint(100, 10000)/100)
-        RawMaterialUnitPrice = 100 * math.floor(random.randint(100, 5000)/100)
+        RawMaterialQuantity = 100 * math.floor(random.randint(20, 10000)/100)
+        RawMaterialUnitPrice = 100 * math.floor(random.randint(20, 5000)/100)
         rs_dict.append([recordID, RawSupplierID, RawMaterialID, RawMaterialUnitOfMeasure, RawMaterialQuantity, RawMaterialUnitPrice])
     return rs_dict
 # writeXLS('raw-suppliers', RawSuppliers(31))
@@ -360,7 +360,7 @@ def PricingPerMadeMaterial(_range):
         MaterialID = random.randint(1, 100)
         PackagingID = random.randint(1, 7)
         ColorID = random.randint(1, 1500)
-        TotalCost = 100 * math.floor(random.randint(100, 10000)/100)
+        TotalCost = 'NULL'
         ppmm_dict.append([PriceID, MaterialID, PackagingID, ColorID, TotalCost])
     return ppmm_dict
 # writeXLS('pricing-per-made-material', PricingPerMadeMaterial(5001))
@@ -405,10 +405,10 @@ def Shifts(_range):
     sh_dict = []
     j = 1
     for i in range(1, _range):
+        StartDT = fake_ru.date()
+        EndDT = fake_ru.date()
         while len(sh_dict) < _range:
             try:
-                StartDT = fake_ru.date()
-                EndDT = fake_ru.date()
                 if dateDiff(StartDT, EndDT) > 0:
                     sh_dict.append([j, StartDT, EndDT])
                     j += 1
@@ -491,5 +491,4 @@ def Implementation(_range):
         ip_dict.append([ConsignmentID, OrderItemID, ApparatusID, ShiftID, ShipmentID, MadeKG, RemainsKG])
     return ip_dict
 # writeXLS('implementation', Implementation(5001))
-
 
